@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\RollcallRequest;
 use App\Models\Rollcall;
 use App\Repositories\RollcallRepository;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class RollcallController extends Controller
@@ -25,6 +26,8 @@ class RollcallController extends Controller
      */
     public function index()
     {
+        return view('rollcall.calendar.month', $this->rollcalls->calendarMonthView());
+
         return view('rollcall.index', [
             'rollcalls' => $this->rollcalls->index()
         ]);
@@ -50,7 +53,7 @@ class RollcallController extends Controller
     {
         $this->rollcalls->store($request);
 
-        return redirect(route('rollcall.index', ['language' => request()->language]))->with('message', __('rollcall.stored'));
+        return redirect(route('rollcall.index', ['language' => request()->language]))->with('status', __('rollcall.stored'));
     }
 
     /**
@@ -59,10 +62,11 @@ class RollcallController extends Controller
      * @param $rollcall
      * @return \Illuminate\Http\Response
      */
-    public function show(Rollcall $rollcall)
+    public function show($date)
     {
         return view('rollcall.index_date', [
-            'rollcalls' => $this->rollcalls->show($rollcall)
+            'rollcalls' => $this->rollcalls->show($date),
+            'date' => $date
         ]);
     }
 
@@ -90,7 +94,7 @@ class RollcallController extends Controller
 
         $this->rollcalls->update($request, $rollcall);
 
-        return redirect(route('rollcall.index'))->with('message', __('rollcall.updated'));
+        return redirect(route('rollcall.index'))->with('status', __('rollcall.updated'));
     }
 
     /**
@@ -103,20 +107,29 @@ class RollcallController extends Controller
     {
         $this->rollcalls->destroy($rollcall);
 
-        return redirect(route('rollcall.index'))->with('message', __('rollcall.destroyed'));
+        return redirect(route('rollcall.index'))->with('status', __('rollcall.destroyed'));
     }
 
     public function arriveNow()
     {
         $this->rollcalls->arriveNow();
 
-        return redirect(route('rollcall.index'))->with('message', __('rollcall.stored'));
+        return redirect(route('rollcall.index'))->with('status', __('rollcall.stored'));
     }
 
     public function departNow()
     {
         $this->rollcalls->departNow();
 
-        return redirect(route('rollcall.index'))->with('message', __('rollcall.stored'));
+        return redirect(route('rollcall.index'))->with('status', __('rollcall.stored'));
+    }
+
+    public function storeAt(Request $request)
+    {
+        $this->authorize('createAt', [Rollcall::class, $request->date]);
+
+        $this->rollcalls->storeAt($request);
+
+        return back()->with('status', __('rollcall.stored'));
     }
 }

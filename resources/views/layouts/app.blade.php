@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
+    <link href="/css/calendar.css" rel="stylesheet">
 
     <!-- Scripts -->
     <script>
@@ -83,5 +84,10 @@
 
     <!-- Scripts -->
     <script src="/js/app.js"></script>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
 </body>
 </html>

@@ -21,5 +21,12 @@ Route::get('/home', 'HomeController@index');
 
 Route::get('rollcall/arrive', 'RollcallController@arriveNow')->name('rollcall.arrive');
 Route::get('rollcall/depart', 'RollcallController@departNow')->name('rollcall.depart');
+Route::post('rollcall/store-at', 'RollcallController@storeAt')->name('rollcall.storeAt');
 Route::resource('rollcall', 'RollcallController');
+
+Route::get('test', function () {
+
+});
+
+Route::get('payslip/calculate-time-for-me', 'PayslipController@calculateMyPayslipHoursOfCurrentMonth')->name('payslip.calculateForMeTemp');
 

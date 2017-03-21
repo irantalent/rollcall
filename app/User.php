@@ -30,4 +30,8 @@ class User extends Authenticatable
     public function rollcalls(){
         return $this->hasMany('App\Models\Rollcall');
     }
+
+    public function payslips(){
+        return $this->hasMany('App\Models\Payslip');
+    }
 }

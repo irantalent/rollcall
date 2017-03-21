@@ -1,0 +1,42 @@
+.cal-table th {
+    width: 14.28%;
+    font-weight: bold;
+    font-size: 15px;
+}
+.cal-table td {
+    padding: 5px !important;
+    font-size: 13px;
+}
+.cal-table td .cal-day-number {
+    float: right;
+    font-size: 17px;
+    font-weight: bold;
+    margin: 2px;
+    min-width: 19px;
+    padding: 3px;
+    text-align: center;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+}
+
+.cal-table td .this-month {
+    color: #000000;
+    transition: color 1s, background-color 1s;
+}
+
+.cal-table td .this-month:hover {
+    background-color: #B8B8B8;
+    color: #FFFFFF;
+    transition: color 1s, background-color 1s;
+}
+
+.cal-table td .other-month {
+    color: #aaaaaa;
+    transition: color 1s, background-color 1s;
+}
+.cal-table td .other-month:hover {
+    background-color: #B8B8B8;
+    color: #FFFFFF;
+    transition: color 1s, background-color 1s;
+}

@@ -19,10 +19,10 @@
                         </div>
                         <table class="table table-striped table-hover">
                             <tr>
-                                <th>@lang('rollcall.time')</th>
-                                <th>First arrive</th>
-                                <th>Last exit</th>
-                                <th># passes</th>
+                                <th>@lang('rollcall.date')</th>
+                                <th>@lang('rollcall.first_arrive')</th>
+                                <th>@lang('rollcall.last_depart')</th>
+                                <th>@lang('rollcall.number_of_passes')</th>
                                 <th>@lang('rollcall.operations')</th>
                             </tr>
                             @foreach($rollcalls as $rollcall)
@@ -30,13 +30,13 @@
                                     <td>{{ $rollcall->date }}</td>
                                     <td>
                                         {{ $rollcall->first_arrive_datetime }}
-                                    </td>
+                                    </td>n
                                     <td>
                                         {{ $rollcall->last_depart_datetime }}
                                     </td>
                                     <td>{{ $rollcall->passes }}</td>
                                     <td>
-                                        <a href="{{ route('rollcall.show', ['rollcall' => $rollcall]) }}">Details and edit</a>
+                                        <a href="{{ route('rollcall.show', ['date' => $rollcall->date]) }}">Details and edit</a>
                                     </td>
                                 </tr>
                             @endforeach

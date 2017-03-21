@@ -1,0 +1,30 @@
+.cal-table {
+  th {
+    width: 14.28%;
+    font-weight: bold;
+    font-size: 15px;
+  }
+  td {
+    padding: 5px !important;
+
+    .cal-day-number {
+      float: right;
+      font-size: 13px;
+      margin: 2px;
+      min-width: 19px;
+      padding: 3px;
+      text-align: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      color: black;
+      transition: color 1s, background-color 1s;
+
+      :hover {
+        background-color: #B8B8B8;
+        color: #FFFFFF;
+        transition: color 1s, background-color 1s;
+      }
+    }
+  }
+}
