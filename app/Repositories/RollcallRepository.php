@@ -142,7 +142,7 @@ class RollcallRepository
                         ->first(),
                     'number_of_passes' => request()->user()
                         ->rollcalls()
-                        ->whereDate('rollcall_time', $day)
+                        ->whereDate('rollcall_time', $day->toDateString())
                         ->count(),
                     'is_in_this_month' => $day->month == $date->month,
                     'date' => $day

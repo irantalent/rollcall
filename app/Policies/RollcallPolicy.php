@@ -66,6 +66,6 @@ class RollcallPolicy
      */
     public function delete(User $user, Rollcall $rollcall)
     {
-        //
+        return true;
     }
 }
