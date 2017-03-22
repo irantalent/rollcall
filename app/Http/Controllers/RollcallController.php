@@ -107,7 +107,7 @@ class RollcallController extends Controller
     {
         $this->rollcalls->destroy($rollcall);
 
-        return redirect(route('rollcall.index'))->with('status', __('rollcall.destroyed'));
+        return back()->with('status', __('rollcall.destroyed'));
     }
 
     public function arriveNow()

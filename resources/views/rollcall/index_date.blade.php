@@ -12,25 +12,25 @@
 
                     <div class="panel-body">
                         @can('createAt', [\App\Models\Rollcall::class, $date])
-                        <div class="row">
-                            <form action="{{ route('rollcall.storeAt') }}" method="post">
-                                {{ csrf_field() }}
-                                <input type="hidden" name="date" value="{{ $date }}">
-                                <div class="form-group-sm col-md-3">
-                                    <input class="form-control" name="time" type="time">
-                                </div>
-                                <div class="form-group col-md-3">
-                                    <button name="arrive" value="arrive" class="btn btn-sm btn-success">
-                                        <span class="glyphicon glyphicon-arrow-right"></span>
-                                        @lang('rollcall.arrive')
-                                    </button>
-                                    <button name="depart" value="depart" class="btn btn-sm btn-danger">
-                                        <span class="glyphicon glyphicon-arrow-left"></span>
-                                        @lang('rollcall.depart')
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
+                            <div class="row">
+                                <form action="{{ route('rollcall.storeAt') }}" method="post">
+                                    {{ csrf_field() }}
+                                    <input type="hidden" name="date" value="{{ $date }}">
+                                    <div class="form-group-sm col-md-3">
+                                        <input class="form-control" name="time" type="time">
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <button name="arrive" value="arrive" class="btn btn-sm btn-success">
+                                            <span class="glyphicon glyphicon-arrow-right"></span>
+                                            @lang('rollcall.arrive')
+                                        </button>
+                                        <button name="depart" value="depart" class="btn btn-sm btn-danger">
+                                            <span class="glyphicon glyphicon-arrow-left"></span>
+                                            @lang('rollcall.depart')
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
                         @endcan
                         <table class="table table-striped table-hover">
                             <tr>
@@ -54,8 +54,18 @@
                                             <a href="{{ route('rollcall.edit', ['rollcall' => $rollcall]) }}"
                                                class="btn btn-primary">
                                                 <span class="glyphicon glyphicon-pencil"></span>
-                                                @lang('rollcall.details_and_edit')
                                             </a>
+                                        @endcan
+                                        @can('delete', $rollcall)
+                                            <form method="post"
+                                                  style="display: inline;"
+                                                  action="{{ route('rollcall.destroy', ['rollcall' => $rollcall]) }}">
+                                                {{ csrf_field() }}
+                                                {{ method_field('DELETE') }}
+                                                <button type="submit" class="btn btn-danger">
+                                                    <span class="glyphicon glyphicon-remove"></span>
+                                                </button>
+                                            </form>
                                         @endcan
                                     </td>
                                 </tr>
