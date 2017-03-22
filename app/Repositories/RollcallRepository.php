@@ -130,13 +130,13 @@ class RollcallRepository
                 $processedWeek[] = (object)[
                     'first_arrive' => request()->user()
                         ->rollcalls()
-                        ->whereDate('rollcall_time', $day)
+                        ->whereDate('rollcall_time', $day->toDateString())
                         ->where('type', Rollcall::ARRIVE)
                         ->orderBy('rollcall_time', 'ASC')
                         ->first(),
                     'last_depart' => request()->user()
                         ->rollcalls()
-                        ->whereDate('rollcall_time', $day)
+                        ->whereDate('rollcall_time', $day->toDateString())
                         ->where('type', Rollcall::DEPART)
                         ->orderBy('rollcall_time', 'DESC')
                         ->first(),
