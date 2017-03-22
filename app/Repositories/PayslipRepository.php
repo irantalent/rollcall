@@ -94,7 +94,9 @@ class PayslipRepository
         if (!$this->isFirstArrive($rollcalls, $indexArrive)) return 0;
 
         $start = new Carbon($rollcalls[$indexArrive]->rollcall_time->toDateString() . " " . BusinessSettings::getStartWorkTime());
+        $finish = new Carbon($rollcalls[$indexArrive]->rollcall_time->toDateString() . " " . BusinessSettings::getFinishWorkTime());
 
+        if($finish->lt($rollcalls[$indexArrive]->rollcall_time)) return 0;
 
         if ($start->lt($rollcalls[$indexArrive]->rollcall_time)) {
             return $start->diffInSeconds($rollcalls[$indexArrive]->rollcall_time);
@@ -107,7 +109,10 @@ class PayslipRepository
     {
         if (!$this->isLastDepart($rollcalls, $indexDepart)) return 0;
 
+        $start = new Carbon($rollcalls[$indexDepart]->rollcall_time->toDateString() . " " . BusinessSettings::getStartWorkTime());
         $finish = new Carbon($rollcalls[$indexDepart]->rollcall_time->toDateString() . " " . BusinessSettings::getFinishWorkTime());
+
+        if($start->gt($rollcalls[$indexDepart]->rollcall_time)) return 0;
 
         if ($finish->gt($rollcalls[$indexDepart]->rollcall_time)) {
             return $finish->diffInSeconds($rollcalls[$indexDepart]->rollcall_time);
