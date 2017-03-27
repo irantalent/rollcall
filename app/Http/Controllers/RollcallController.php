@@ -90,8 +90,6 @@ class RollcallController extends Controller
      */
     public function update(RollcallRequest $request, Rollcall $rollcall)
     {
-        dd($request->date . " " . $request->time);
-
         $this->rollcalls->update($request, $rollcall);
 
         return redirect(route('rollcall.index'))->with('status', __('rollcall.updated'));
