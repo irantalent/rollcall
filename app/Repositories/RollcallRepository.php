@@ -173,8 +173,8 @@ class RollcallRepository
 
         $rollcalls = request()->user()
             ->rollcalls()
-            ->whereDate('rollcall_time', '>=', (clone $date)->firstOfMonth()->toDateString())
-            ->whereDate('rollcall_time', '<=', (clone $date)->endOfMonth()->toDateString())
+            ->whereDate('rollcall_time', '>=', (new Carbon($date))->firstOfMonth()->toDateString())
+            ->whereDate('rollcall_time', '<=', (new Carbon($date))->endOfMonth()->toDateString())
             ->orderBy('rollcall_time', 'ASC')->get();
 
         for ($i = 0; $i < $rollcalls->count(); $i++) {

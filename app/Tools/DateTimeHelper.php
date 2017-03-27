@@ -33,7 +33,7 @@ class DateTimeHelper
             $month[] = new \DatePeriod(
                 $monday,
                 CarbonInterval::day(),
-                (clone $monday)->endOfWeek()
+                (new Carbon($monday))->endOfWeek()
             );
         }
 

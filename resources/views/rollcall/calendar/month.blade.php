@@ -66,14 +66,14 @@
                         <div class="col-sm-8">
                             <div class="text-center">
                                 <h1>
-                                    <a href="{{ route('rollcall.index', ['date'=>(clone $date)->subYear()->toDateString()]) }}"><span
+                                    <a href="{{ route('rollcall.index', ['date'=>(new Carbon\Carbon($date))->subYear()->toDateString()]) }}"><span
                                                 class="small glyphicon glyphicon-backward"></span></a>
-                                    <a href="{{ route('rollcall.index', ['date'=>(clone $date)->subMonth()->toDateString()]) }}"><span
+                                    <a href="{{ route('rollcall.index', ['date'=>(new Carbon\Carbon($date))->subMonth()->toDateString()]) }}"><span
                                                 class="small glyphicon glyphicon-triangle-left"></span></a>
                                     {{ $date->format('F Y') }}
-                                    <a href="{{ route('rollcall.index', ['date'=>(clone $date)->addMonth()->toDateString()]) }}"><span
+                                    <a href="{{ route('rollcall.index', ['date'=>(new Carbon\Carbon($date))->addMonth()->toDateString()]) }}"><span
                                                 class="small glyphicon glyphicon-triangle-right"></span></a>
-                                    <a href="{{ route('rollcall.index', ['date'=>(clone $date)->addYear()->toDateString()]) }}"><span
+                                    <a href="{{ route('rollcall.index', ['date'=>(new Carbon\Carbon($date))->addYear()->toDateString()]) }}"><span
                                                 class="small glyphicon glyphicon-forward"></span></a>
                                 </h1>
                             </div>

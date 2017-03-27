@@ -41,9 +41,9 @@ class PayslipRepository
 
         foreach (
             new \DatePeriod(
-                (clone $carbon)->firstOfMonth(),
+                (new Carbon($carbon))->firstOfMonth(),
                 CarbonInterval::day(),
-                (clone $carbon)->endOfMonth()
+                (new Carbon($carbon))->endOfMonth()
             ) as $day
         ) {
             $rollcalls = $user
